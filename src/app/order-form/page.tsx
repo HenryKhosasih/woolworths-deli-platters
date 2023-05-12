@@ -16,7 +16,9 @@ export default function OrderForm() {
   }, []);
   return (
     <main>
-      <div className={"flex flex-col w-full h-screen max-w-6xl mx-auto p-10"}>
+      <div
+        className={"flex flex-col w-full min-h-screen max-w-6xl mx-auto p-10"}
+      >
         <h1 className="text-2xl">Platters</h1>
         <div className="mt-5 flex gap-6 flex-wrap">
           {products.map((product) => (
