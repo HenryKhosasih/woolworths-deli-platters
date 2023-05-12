@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Header = () => {
   return (
-    <div className="flex justify-center items-center p-4 border-b-[0.5px]">
+    <div className="flex justify-center items-center p-4 sticky top-0 bg-[#fff] shadow-md">
       <span className="hidden sm:inline text-3xl font-light text-primarydark mx-2">
         Woolworths
       </span>
