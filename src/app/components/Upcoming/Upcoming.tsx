@@ -31,7 +31,7 @@ const Upcoming = () => {
         <p className="text-2xl">No upcoming orders</p>
       )}
       <Link href="/order-form">
-        <div className="fixed top-5 right-10 bg-primarydark text-[#fff] p-2 rounded-md">
+        <div className="fixed top-5 right-10 bg-primarydark text-[#fff] p-2 rounded-md hover:opacity-70">
           <span className="m-1 hidden sm:inline">New Order</span>
           <AddBoxIcon fontSize="large" />
         </div>
