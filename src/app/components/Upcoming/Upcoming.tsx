@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import mockOrders from "../../../../mockOrders";
 import { Order } from "@/app/utils/typings";
 import Orders from "./Orders";
+import AddBoxIcon from "@mui/icons-material/AddBox";
 
 const Upcoming = () => {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -28,6 +29,10 @@ const Upcoming = () => {
       ) : (
         <p className="text-2xl">No upcoming orders</p>
       )}
+      <div className="fixed bottom-10 right-10 bg-primarydark text-[#fff] p-2 rounded-md">
+        <span className="m-1">New Order</span>
+        <AddBoxIcon fontSize="large" />
+      </div>
     </div>
   );
 };
