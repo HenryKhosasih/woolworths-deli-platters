@@ -9,3 +9,9 @@
     margin: 0;
   }
 }
+
+@layer components {
+  .orderInput {
+    @apply p-3 italic border border-[#E0E0E0] rounded-md hover:border-primarydark;
+  }
+}
