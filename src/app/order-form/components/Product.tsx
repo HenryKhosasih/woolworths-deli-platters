@@ -71,12 +71,6 @@ const Product = ({ product: { id, image, price, name }, product }: Props) => {
           <span className="m-1 hidden sm:inline">Back</span>
         </div>
       </Link>
-      <Link href="/order-form">
-        <div className="fixed top-5 right-10 bg-primarydark text-[#fff] p-2 rounded-md hover:opacity-70 flex items-center">
-          <span className="m-1 hidden sm:inline">Continue</span>
-          <ArrowForwardIcon fontSize="large" />
-        </div>
-      </Link>
     </div>
   );
 };
