@@ -31,7 +31,7 @@ const Product = ({ product: { image, price, name } }: Props) => {
           </button>
           <input
             type="number"
-            className="w-32 h-[42px] text-center outline-none bg-[#F2F3F0]"
+            className="w-full sm:w-32 h-[42px] text-center outline-none bg-[#F2F3F0]"
           />
           <button className="hover:opacity-70">
             <AddIcon className="text-[#fff] ml-1" />
