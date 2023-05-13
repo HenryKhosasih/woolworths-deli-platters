@@ -25,15 +25,15 @@ const Product = ({ product: { image, price, name } }: Props) => {
           Add to cart
         </button>
       ) : (
-        <div className="flex bg-primarylight w-full rounded-lg px-3 border border-primarylight justify-center">
-          <button>
+        <div className="flex bg-primarylight w-full rounded-lg px-3 border border-primarylight justify-center mt-16">
+          <button className="hover:opacity-70">
             <RemoveIcon className="text-[#fff] mr-1" />
           </button>
           <input
             type="number"
-            className="w-32 h-11 text-center outline-none bg-[#F2F3F0]"
+            className="w-32 h-[42px] text-center outline-none bg-[#F2F3F0]"
           />
-          <button>
+          <button className="hover:opacity-70">
             <AddIcon className="text-[#fff] ml-1" />
           </button>
         </div>
