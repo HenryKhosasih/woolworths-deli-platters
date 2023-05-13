@@ -31,7 +31,7 @@ const Product = ({ product: { image, price, name } }: Props) => {
           </button>
           <input
             type="number"
-            className="w-32 h-11 text-center outline-none "
+            className="w-32 h-11 text-center outline-none bg-[#F2F3F0]"
           />
           <button>
             <AddIcon className="text-[#fff] ml-1" />
