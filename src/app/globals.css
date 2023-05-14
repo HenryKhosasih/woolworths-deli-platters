@@ -12,6 +12,6 @@
 
 @layer components {
   .orderInput {
-    @apply p-3 italic border border-[#E0E0E0] rounded-md hover:border-primarydark;
+    @apply p-3 italic border border-[#E0E0E0] rounded-md hover:border-primarydark aria-invalid:border-red-500 aria-invalid:outline-red-500;
   }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import ReactDatePicker from "react-datepicker";
 import { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
@@ -9,7 +9,7 @@ import { addDays } from "@/app/utils/date";
 type FormData = {
   name: string;
   phone: string;
-  pickupDate: string;
+  pickupDate: Date;
   pickupTime: string;
 };
 
@@ -17,6 +17,7 @@ const DAYS_NOTICE = 1;
 
 const Form = () => {
   const {
+    control,
     register,
     setValue,
     handleSubmit,
@@ -27,42 +28,58 @@ const Form = () => {
   const onSubmit = handleSubmit((data) => console.log(data));
   return (
     <div className="mt-20 flex flex-col">
-      <form onSubmit={onSubmit} className="flex flex-col space-y-2 mx-auto">
+      <form onSubmit={onSubmit} className="flex flex-col space-y-4 mx-auto">
         <div className="flex space-x-5">
           <div className="flex flex-col">
             <label>Name</label>
             <input
-              {...register("name")}
+              {...register("name", { required: true })}
+              aria-invalid={errors.name ? "true" : "false"}
               className="orderInput"
               placeholder="Brad Banducci"
             />
+            {errors.name?.type === "required" && (
+              <p className="text-red-500">Name is required</p>
+            )}
           </div>
           <div className="flex flex-col">
             <label>Phone</label>
             <input
               type="number"
-              {...register("phone")}
+              {...register("phone", {
+                required: true,
+                pattern:
+                  /^(\+?\(61\)|\(\+?61\)|\+?61|\(0[1-9]\)|0[1-9])?( ?-?[0-9]){7,9}$/,
+              })}
               className="orderInput"
               placeholder="0451234567"
             />
+            {errors.phone?.type === "required" && (
+              <p className="text-red-500">Phone is required</p>
+            )}
+            {errors.phone?.type === "pattern" && (
+              <p className="text-red-500">Invalid phone format</p>
+            )}
           </div>
         </div>
         <div className="flex space-x-5">
-          <div className="flex flex-col flexgro">
+          <div className="flex flex-col">
             <label>Date of pick up</label>
-            <ReactDatePicker
-              selected={startDate}
-              onChange={(date) => date && setStartDate(date)}
-              minDate={earliestDate}
-              dateFormat="dd/MM/yyyy"
-              className="orderInput"
+            <Controller
+              control={control}
+              name="pickupDate"
+              render={({ field }) => (
+                <ReactDatePicker
+                  required
+                  selected={field.value}
+                  onChange={(date) => field.onChange(date)}
+                  minDate={earliestDate}
+                  dateFormat="dd/MM/yyyy"
+                  className="orderInput"
+                  placeholderText={earliestDate.toLocaleDateString()}
+                />
+              )}
             />
-            {/* <input
-              type="date"
-              {...register("pickupDate")}
-              className="orderInput"
-              min={}
-            /> */}
           </div>
           <div className="flex flex-col flex-grow">
             <label>
@@ -82,8 +99,7 @@ const Form = () => {
 
         <button
           type="submit"
-          className="w-full bg-primarylight p-4 text-[#fff] rounded-md "
-          onClick={() => {}}
+          className="w-full bg-primarylight p-4 text-[#fff] rounded-md"
         >
           Put Order
         </button>
