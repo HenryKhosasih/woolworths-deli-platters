@@ -2,7 +2,6 @@
 
 import { Controller, useForm } from "react-hook-form";
 import ReactDatePicker from "react-datepicker";
-import { useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import { addDays } from "@/app/utils/date";
 
@@ -19,12 +18,10 @@ const Form = () => {
   const {
     control,
     register,
-    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
   const earliestDate = addDays(new Date(), DAYS_NOTICE);
-  const [startDate, setStartDate] = useState(earliestDate);
   const onSubmit = handleSubmit((data) => console.log(data));
   return (
     <div className="mt-20 flex flex-col">
