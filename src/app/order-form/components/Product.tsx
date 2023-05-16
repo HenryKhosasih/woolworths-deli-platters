@@ -9,7 +9,6 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addToCart, removeFromCart } from "@/redux/features/cartSlice";
 import Link from "next/link";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 type Props = {
   product: Product;
