@@ -4,6 +4,9 @@ import { Controller, useForm } from "react-hook-form";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { addDays } from "@/app/utils/date";
+import { v4 as uuidv4 } from "uuid";
+import { dynamoClient } from "@/libs/dynamoClient";
+import { PutItemCommand } from "@aws-sdk/client-dynamodb";
 
 type FormData = {
   name: string;
@@ -22,7 +25,29 @@ const Form = () => {
     formState: { errors },
   } = useForm<FormData>();
   const earliestDate = addDays(new Date(), DAYS_NOTICE);
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const onSubmit = handleSubmit(async (data: FormData) => {
+    const { name, phone, pickupDate, pickupTime } = data;
+    const params = {
+      TableName: "orders",
+      Item: {
+        id: { S: uuidv4() + "" },
+        phone: { S: phone + "" },
+        name: { S: name + "" },
+        pickupDate: { S: pickupDate.getTime() + "" },
+        pickupTime: { S: pickupTime + "" },
+      },
+    };
+
+    try {
+      await dynamoClient.send(new PutItemCommand(params));
+      alert("Successfully added new orders!");
+    } catch (err) {
+      console.error(
+        "An error occurred. Check the console for further information",
+        err
+      );
+    }
+  });
   return (
     <div className="mt-20 flex flex-col">
       <form onSubmit={onSubmit} className="flex flex-col space-y-4 mx-auto">

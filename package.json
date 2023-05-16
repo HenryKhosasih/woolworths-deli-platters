@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-cognito-identity": "^3.332.0",
+    "@aws-sdk/client-dynamodb": "^3.332.0",
+    "@aws-sdk/credential-provider-cognito-identity": "^3.332.0",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.11.16",
@@ -28,10 +31,12 @@
     "react-hook-form": "^7.43.9",
     "react-redux": "^8.0.5",
     "tailwindcss": "3.3.2",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/react-datepicker": "^4.11.2",
+    "@types/uuid": "^9.0.1",
     "tailwindcss-aria-attributes": "^1.3.0"
   }
 }
