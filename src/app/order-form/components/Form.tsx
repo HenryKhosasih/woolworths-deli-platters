@@ -7,6 +7,8 @@ import { addDays } from "@/app/utils/date";
 import { v4 as uuidv4 } from "uuid";
 import { dynamoClient } from "@/libs/dynamoClient";
 import { PutItemCommand } from "@aws-sdk/client-dynamodb";
+import { useAppSelector } from "@/redux/hooks";
+import { Product } from "@/app/utils/typings";
 
 type FormData = {
   name: string;
@@ -25,8 +27,27 @@ const Form = () => {
     formState: { errors },
   } = useForm<FormData>();
   const earliestDate = addDays(new Date(), DAYS_NOTICE);
+
+  const productsInCart = useAppSelector((state) => state.cart.products);
+  console.log(productsInCart);
+
   const onSubmit = handleSubmit(async (data: FormData) => {
     const { name, phone, pickupDate, pickupTime } = data;
+    const platters = productsInCart.map(
+      ({ id, image, name, price, quantity }: Product) => {
+        return {
+          M: {
+            id: { S: id + "" },
+            image: {
+              S: image + "",
+            },
+            name: { S: name + "" },
+            price: { N: price + "" },
+            quantity: { N: quantity + "" },
+          },
+        };
+      }
+    );
     const params = {
       TableName: "orders",
       Item: {
@@ -35,6 +56,9 @@ const Form = () => {
         name: { S: name + "" },
         pickupDate: { S: pickupDate.getTime() + "" },
         pickupTime: { S: pickupTime + "" },
+        platters: {
+          L: platters,
+        },
       },
     };
 
