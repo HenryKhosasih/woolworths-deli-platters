@@ -9,6 +9,7 @@ import { dynamoClient } from "@/libs/dynamoClient";
 import { PutItemCommand } from "@aws-sdk/client-dynamodb";
 import { useAppSelector } from "@/redux/hooks";
 import { Product } from "@/app/utils/typings";
+import { useRouter } from "next/navigation";
 
 type FormData = {
   name: string;
@@ -20,6 +21,7 @@ type FormData = {
 const DAYS_NOTICE = 1;
 
 const Form = () => {
+  const router = useRouter();
   const {
     control,
     register,
@@ -29,7 +31,6 @@ const Form = () => {
   const earliestDate = addDays(new Date(), DAYS_NOTICE);
 
   const productsInCart = useAppSelector((state) => state.cart.products);
-  console.log(productsInCart);
 
   const onSubmit = handleSubmit(async (data: FormData) => {
     const { name, phone, pickupDate, pickupTime } = data;
@@ -65,6 +66,7 @@ const Form = () => {
     try {
       await dynamoClient.send(new PutItemCommand(params));
       alert("Successfully added new orders!");
+      router.replace("/");
     } catch (err) {
       console.error(
         "An error occurred. Check the console for further information",
