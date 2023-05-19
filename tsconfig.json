@@ -29,7 +29,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/libs/dynamoClient.tst.js",
-    "src/app/libs/dynamoAppHelperFiles.mjs"
+    "src/app/libs/dynamoAppHelperFiles.mjs",
+    "src/libs/dynamoAppHelperFiles.js"
   ],
   "exclude": ["node_modules"]
 }

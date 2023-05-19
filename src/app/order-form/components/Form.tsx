@@ -10,6 +10,7 @@ import { PutItemCommand } from "@aws-sdk/client-dynamodb";
 import { useAppSelector } from "@/redux/hooks";
 import { Product } from "@/app/utils/typings";
 import { useRouter } from "next/navigation";
+import { toSeconds } from "@/app/utils/time";
 
 type FormData = {
   name: string;
@@ -49,17 +50,21 @@ const Form = () => {
         };
       }
     );
+    const pickupDateUnixSecond = pickupDate.getTime() / 1000;
+    const ttl = pickupDateUnixSecond + toSeconds(pickupTime);
+
     const params = {
       TableName: "orders",
       Item: {
         id: { S: uuidv4() + "" },
         phone: { S: phone + "" },
         name: { S: name + "" },
-        pickupDate: { S: pickupDate.getTime() + "" },
+        pickupDate: { S: pickupDateUnixSecond + "" },
         pickupTime: { S: pickupTime + "" },
         platters: {
           L: platters,
         },
+        TTL: { N: ttl + "" },
       },
     };
 
