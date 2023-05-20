@@ -66,18 +66,18 @@ const OrderDisplay = ({
   };
 
   return (
-    <div key={id} className="flex p-4 space-x-10 bg-primarylight">
+    <div key={id} className="flex p-4 space-x-5 sm:space-x-10 bg-primarylight">
       <div className="flex flex-col m-auto">
         <p className="text-center text-lg">
           {new Date(toEpochMilli(pickupDate)).toLocaleDateString()}
         </p>
         <p className="text-center text-lg">{pickupTime}</p>
-        <p className="text-center text-xs">{name}</p>
+        <p className="text-center text-xs">({name})</p>
       </div>
       <div className="flex-grow">
         <ul>
           {products.map(({ quantity, name }, i) => (
-            <li key={i} className="tracking-widest">
+            <li key={i} className="text-sm sm:text-base tracking-widest">
               {quantity} x {name}
             </li>
           ))}
