@@ -4,7 +4,7 @@ import { dynamoClient } from "@/libs/dynamoClient";
 import ClearIcon from "@mui/icons-material/Clear";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-import { mutate, revalidateEvents } from "swr/_internal";
+import { mutate } from "swr/_internal";
 
 type Props = {
   order: Order;
