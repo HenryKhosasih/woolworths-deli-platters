@@ -8,18 +8,36 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Link from "next/link";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { reset } from "@/redux/features/cartSlice";
+import SwipeDownOutlinedIcon from "@mui/icons-material/SwipeDownOutlined";
 
 export default function OrderForm() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [isHintVisible, setIsHintVisible] = useState(false);
 
   const dispatch = useAppDispatch();
   const cart = useAppSelector((state) => state.cart.products);
+
+  const listenToScroll = () => {
+    const heightToHideFrom = document.body.clientHeight - 200;
+    const winScroll = window.innerHeight + document.documentElement.scrollTop;
+
+    if (winScroll > heightToHideFrom) {
+      setIsHintVisible(false);
+    } else {
+      setIsHintVisible(true);
+    }
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
       setProducts(productsData);
     };
     fetchProducts();
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("scroll", listenToScroll);
+    return () => window.removeEventListener("scroll", listenToScroll);
   }, []);
 
   return (
@@ -41,6 +59,11 @@ export default function OrderForm() {
           ))}
         </div>
         {cart.length > 0 && <Form />}
+        {cart.length > 0 && isHintVisible && (
+          <div className="fixed bottom-10 right-10 bg-primarylight rounded-full p-2 sm:p-4 animate-bounce">
+            <SwipeDownOutlinedIcon fontSize="large" className="text-white" />
+          </div>
+        )}
       </div>
     </main>
   );
