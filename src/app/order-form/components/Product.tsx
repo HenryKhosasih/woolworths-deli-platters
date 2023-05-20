@@ -7,8 +7,6 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addToCart, removeFromCart } from "@/redux/features/cartSlice";
-import Link from "next/link";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 type Props = {
   product: Product;
@@ -64,12 +62,6 @@ const Product = ({ product: { id, image, price, name }, product }: Props) => {
           </button>
         </div>
       )}
-      <Link href="/">
-        <div className="fixed top-5 left-10 bg-primarydark text-[#fff] p-2 rounded-md hover:opacity-70 flex items-center">
-          <ArrowBackIcon fontSize="large" />
-          <span className="m-1 hidden sm:inline">Back</span>
-        </div>
-      </Link>
     </div>
   );
 };
