@@ -56,7 +56,6 @@ const Form = () => {
     };
 
     try {
-      // await dynamoClient.send(new PutItemCommand(params));
       await dynamoClient.put(params);
       alert("Successfully added new orders!");
       router.replace("/");
