@@ -24,8 +24,8 @@ const OrderDisplay = ({
             </h1>
             <p className="p-4 pb-10 border-b border-b-[#E0E0E0]">
               Delete {name}&apos;s order on{" "}
-              {new Date(toEpochMilli(pickupDate)).toLocaleDateString()}? This
-              action cannot be reversed.
+              {new Date(toEpochMilli(pickupDate)).toLocaleDateString()}? <br />
+              This action cannot be reversed.
             </p>
             <div className="flex p-2 justify-end gap-4">
               <button
