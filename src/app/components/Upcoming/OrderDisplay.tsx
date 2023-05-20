@@ -23,7 +23,7 @@ const OrderDisplay = ({
               Delete order
             </h1>
             <p className="p-4 pb-10 border-b border-b-[#E0E0E0]">
-              Delete {name}'s order on{" "}
+              Delete {name}&apos;s order on{" "}
               {new Date(toEpochMilli(pickupDate)).toLocaleDateString()}? This
               action cannot be reversed.
             </p>
