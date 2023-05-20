@@ -26,7 +26,12 @@ const fetchOrders = async () => {
 };
 
 const Upcoming = () => {
-  const { data: orders, error, isLoading } = useSWR("/api/orders", fetchOrders);
+  const {
+    data: orders,
+    error,
+    isLoading,
+    mutate,
+  } = useSWR("/api/orders", fetchOrders);
 
   return (
     <div className="flex flex-col w-full max-w-6xl mx-auto h-screen p-10">
@@ -35,9 +40,9 @@ const Upcoming = () => {
       {isLoading ? (
         <p className="text-xl">Loading...</p>
       ) : orders?.length && orders.length > 0 ? (
-        <Orders orders={orders} />
+        <Orders orders={orders} mutate={mutate} />
       ) : (
-        <p className="text-lg">No upcoming orders</p>
+        <p className="text-lg mt-6">No upcoming orders</p>
       )}
 
       <Link href="/order-form">
