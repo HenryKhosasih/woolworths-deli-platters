@@ -23,9 +23,12 @@ const OrderDisplay = ({
               Delete order
             </h1>
             <p className="p-4 pb-10 border-b border-b-[#E0E0E0]">
-              Delete {name}&apos;s order on{" "}
-              {new Date(toEpochMilli(pickupDate)).toLocaleDateString("en-au")}?{" "}
-              <br />
+              Delete <span className="font-semibold">{name}</span>&apos;s order
+              on{" "}
+              <span className="font-semibold">
+                {new Date(toEpochMilli(pickupDate)).toLocaleDateString("en-AU")}
+              </span>
+              ? <br />
               This action cannot be reversed.
             </p>
             <div className="flex p-2 justify-end gap-4">
@@ -70,7 +73,7 @@ const OrderDisplay = ({
     <div key={id} className="flex p-4 space-x-5 sm:space-x-10 bg-primarylight">
       <div className="flex flex-col m-auto">
         <p className="text-center text-lg">
-          {new Date(toEpochMilli(pickupDate)).toLocaleDateString("en-au")}
+          {new Date(toEpochMilli(pickupDate)).toLocaleDateString("en-AU")}
         </p>
         <p className="text-center text-lg">{pickupTime}</p>
         <p className="text-center text-xs">({name})</p>

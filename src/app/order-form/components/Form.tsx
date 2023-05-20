@@ -79,7 +79,7 @@ const Form = () => {
               {...register("name", { required: true })}
               aria-invalid={errors.name ? "true" : "false"}
               className="orderInput"
-              placeholder="Brad Banducci"
+              placeholder="Liam Johnson"
             />
             {errors.name?.type === "required" && (
               <p className="text-red-500">Name is required</p>
@@ -119,7 +119,7 @@ const Form = () => {
                   minDate={earliestDate}
                   dateFormat="dd/MM/yyyy"
                   className="orderInput w-full"
-                  placeholderText={earliestDate.toLocaleDateString()}
+                  placeholderText={earliestDate.toLocaleDateString("en-AU")}
                 />
               )}
             />
