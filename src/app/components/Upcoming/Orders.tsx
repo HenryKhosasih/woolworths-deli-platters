@@ -9,26 +9,29 @@ type Props = {
 const Orders = ({ orders }: Props) => {
   return (
     <div className="mt-5 text-[#fff] space-y-6">
-      {orders.map(({ id, pickupDate, pickupTime, products }) => (
-        <div key={id} className="flex p-4 space-x-10 bg-primarylight">
-          <div className="flex flex-col m-auto">
-            <p className="text-lg">
-              {new Date(toEpochMilli(pickupDate)).toLocaleDateString()}
-            </p>
-            <p className="flex-grow text-center text-2xl">{pickupTime}</p>
+      {orders
+        .sort((a, b) => a.pickupDate - b.pickupDate)
+        .map(({ id, pickupDate, pickupTime, name, products }) => (
+          <div key={id} className="flex p-4 space-x-10 bg-primarylight">
+            <div className="flex flex-col m-auto">
+              <p className="text-center text-lg">
+                {new Date(toEpochMilli(pickupDate)).toLocaleDateString()}
+              </p>
+              <p className="text-center text-lg">{pickupTime}</p>
+              <p className="text-center text-xs">{name}</p>
+            </div>
+            <div className="flex-grow">
+              <ul>
+                {products.map(({ quantity, name }, i) => (
+                  <li key={i} className="tracking-widest">
+                    {quantity} x {name}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <ClearIcon />
           </div>
-          <div className="flex-grow">
-            <ul>
-              {products.map(({ quantity, name }, i) => (
-                <li key={i} className="tracking-widest">
-                  {quantity} x {name}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <ClearIcon />
-        </div>
-      ))}
+        ))}
     </div>
   );
 };
