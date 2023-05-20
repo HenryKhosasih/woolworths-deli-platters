@@ -35,7 +35,7 @@ const Upcoming = () => {
   } = useSWR("/api/orders", fetchOrders);
 
   return (
-    <div className="flex flex-col w-full max-w-6xl mx-auto h-screen p-10">
+    <div className="flex flex-col w-full max-w-6xl mx-auto min-h-screen p-10">
       <h1 className="text-2xl">Upcoming Orders</h1>
       {error && <p className="text-xl">Fail to fetch upcoming orders</p>}
       {isLoading ? (
