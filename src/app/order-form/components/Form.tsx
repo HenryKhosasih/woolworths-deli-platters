@@ -55,8 +55,6 @@ const Form = () => {
       },
     };
 
-    console.log(params);
-
     try {
       // await dynamoClient.send(new PutItemCommand(params));
       await dynamoClient.put(params);
