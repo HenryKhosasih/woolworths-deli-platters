@@ -71,8 +71,8 @@ const Form = () => {
   });
   return (
     <div className="mt-20 flex flex-col">
-      <form onSubmit={onSubmit} className="flex flex-col space-y-4 mx-auto">
-        <div className="flex space-x-5">
+      <form onSubmit={onSubmit} className="flex flex-col space-y-4 sm:mx-auto">
+        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-5">
           <div className="flex flex-col">
             <label>Name</label>
             <input
@@ -105,7 +105,7 @@ const Form = () => {
             )}
           </div>
         </div>
-        <div className="flex space-x-5">
+        <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-5">
           <div className="flex flex-col">
             <label>Date of pick up</label>
             <Controller
@@ -118,7 +118,7 @@ const Form = () => {
                   onChange={(date) => field.onChange(date)}
                   minDate={earliestDate}
                   dateFormat="dd/MM/yyyy"
-                  className="orderInput"
+                  className="orderInput w-full"
                   placeholderText={earliestDate.toLocaleDateString()}
                 />
               )}
@@ -132,7 +132,8 @@ const Form = () => {
             <input
               type="time"
               {...register("pickupTime")}
-              className="orderInput"
+              // override padding due to match sibling input height
+              className="orderInput p-[11px]"
               step="600"
               min="09:00"
               max="18:00"
