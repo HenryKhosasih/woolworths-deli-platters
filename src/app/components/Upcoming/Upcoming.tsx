@@ -19,7 +19,8 @@ const fetchOrders = async () => {
       ":now": now,
     },
     FilterExpression: "#expiryDate >= :now",
-    ProjectionExpression: "id, #customerName, pickupDate, pickupTime, products",
+    ProjectionExpression:
+      "id, #customerName, pickupDate, pickupTime, products, phone",
   });
   return res.Items as Order[];
 };
