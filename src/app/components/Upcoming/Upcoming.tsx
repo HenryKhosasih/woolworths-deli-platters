@@ -39,7 +39,7 @@ const Upcoming = () => {
       <h1 className="text-2xl">Upcoming Orders</h1>
       {error && <p className="text-xl">Fail to fetch upcoming orders</p>}
       {isLoading ? (
-        <div className="absolute top-1/2 left-1/2">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <ColorRing
             visible={true}
             height="80"
