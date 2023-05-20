@@ -127,15 +127,16 @@ const Form = () => {
           <div className="flex flex-col flex-grow">
             <label>
               Time of pick up{" "}
-              <span className="text-[10px] text-primarydark">09:00-22:00</span>
+              <span className="text-[10px] text-primarydark">09:00-18:00</span>
             </label>
             <input
               type="time"
               {...register("pickupTime")}
               className="orderInput"
+              step="600"
               min="09:00"
-              max="22:00"
-              value="13:00"
+              max="18:00"
+              required
             />
           </div>
         </div>
