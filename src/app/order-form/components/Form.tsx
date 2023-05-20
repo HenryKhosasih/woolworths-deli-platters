@@ -6,10 +6,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import { addDays } from "@/app/utils/date";
 import { v4 as uuidv4 } from "uuid";
 import { dynamoClient } from "@/libs/dynamoClient";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Product } from "@/app/utils/typings";
 import { useRouter } from "next/navigation";
 import { toSeconds } from "@/app/utils/time";
+import { reset } from "@/redux/features/cartSlice";
 
 type FormData = {
   name: string;
@@ -22,6 +23,7 @@ const DAYS_NOTICE = 1;
 
 const Form = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const {
     control,
     register,
@@ -57,6 +59,7 @@ const Form = () => {
 
     try {
       await dynamoClient.put(params);
+      dispatch(reset());
       alert("Successfully added new orders!");
       router.replace("/");
     } catch (err) {
