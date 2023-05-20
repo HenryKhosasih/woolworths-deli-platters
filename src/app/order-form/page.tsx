@@ -28,6 +28,10 @@ export default function OrderForm() {
     }
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: document.body.clientHeight, behavior: "smooth" });
+  };
+
   useEffect(() => {
     const fetchProducts = async () => {
       setProducts(productsData);
@@ -60,7 +64,10 @@ export default function OrderForm() {
         </div>
         {cart.length > 0 && <Form />}
         {cart.length > 0 && isHintVisible && (
-          <div className="fixed bottom-5 right-5 bg-primarylight rounded-full p-2 sm:p-4 animate-bounce">
+          <div
+            className="fixed bottom-5 right-5 bg-primarylight rounded-full p-2 sm:p-4 animate-bounce"
+            onClick={scrollToTop}
+          >
             <SwipeDownOutlinedIcon fontSize="large" className="text-white" />
           </div>
         )}
