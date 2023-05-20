@@ -6,6 +6,7 @@ import AddBoxIcon from "@mui/icons-material/AddBox";
 import Link from "next/link";
 import { dynamoClient } from "@/libs/dynamoClient";
 import useSWR from "swr";
+import { ColorRing } from "react-loader-spinner";
 
 const fetchOrders = async () => {
   const now = new Date().getTime() / 1000;
@@ -38,7 +39,17 @@ const Upcoming = () => {
       <h1 className="text-2xl">Upcoming Orders</h1>
       {error && <p className="text-xl">Fail to fetch upcoming orders</p>}
       {isLoading ? (
-        <p className="text-xl">Loading...</p>
+        <div className="absolute top-1/2 left-1/2">
+          <ColorRing
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="blocks-loading"
+            wrapperStyle={{}}
+            wrapperClass="blocks-wrapper"
+            colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+          />
+        </div>
       ) : orders?.length && orders.length > 0 ? (
         <Orders orders={orders} mutate={mutate} />
       ) : (
