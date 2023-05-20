@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import mockProducts from "../../../mockProducts";
+import productsData from "../../../productsData";
 import Product from "./components/Product";
 import Form from "./components/Form";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -17,7 +17,7 @@ export default function OrderForm() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      setProducts(mockProducts);
+      setProducts(productsData);
     };
     fetchProducts();
   }, []);
