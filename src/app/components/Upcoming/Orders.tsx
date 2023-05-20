@@ -1,3 +1,4 @@
+import { toEpochMilli } from "@/app/utils/date";
 import { Order } from "@/app/utils/typings";
 import ClearIcon from "@mui/icons-material/Clear";
 
@@ -8,17 +9,19 @@ type Props = {
 const Orders = ({ orders }: Props) => {
   return (
     <div className="mt-5 text-[#fff] space-y-6">
-      {orders.map((order) => (
-        <div className="flex p-4 space-x-10 bg-primarylight">
+      {orders.map(({ id, pickupDate, pickupTime, products }) => (
+        <div key={id} className="flex p-4 space-x-10 bg-primarylight">
           <div className="flex flex-col m-auto">
-            <p className="text-lg">{order.pickupDate}</p>
-            <p className="flex-grow text-center text-2xl">4PM</p>
+            <p className="text-lg">
+              {new Date(toEpochMilli(pickupDate)).toLocaleDateString()}
+            </p>
+            <p className="flex-grow text-center text-2xl">{pickupTime}</p>
           </div>
           <div className="flex-grow">
             <ul>
-              {order.products.map((product) => (
-                <li className="tracking-widest">
-                  {product.quantity} x {product.name}
+              {products.map(({ quantity, name }, i) => (
+                <li key={i} className="tracking-widest">
+                  {quantity} x {name}
                 </li>
               ))}
             </ul>

@@ -2,8 +2,8 @@ export type Order = {
   id: string;
   name: string;
   phone: string;
-  orderDate: string;
-  pickupDate: string;
+  pickupDate: number;
+  pickupTime: string;
   products: Product[];
 };
 

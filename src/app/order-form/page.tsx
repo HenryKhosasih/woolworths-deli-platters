@@ -13,7 +13,6 @@ export default function OrderForm() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      // const data = fetch("");
       setProducts(mockProducts);
     };
     fetchProducts();

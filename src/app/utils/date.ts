@@ -3,3 +3,5 @@ export const addDays = (date: Date, days: number) => {
   result.setDate(result.getDate() + days);
   return result;
 };
+
+export const toEpochMilli = (epoch: number) => epoch * 1000;

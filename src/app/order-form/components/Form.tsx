@@ -6,7 +6,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import { addDays } from "@/app/utils/date";
 import { v4 as uuidv4 } from "uuid";
 import { dynamoClient } from "@/libs/dynamoClient";
-import { PutItemCommand } from "@aws-sdk/client-dynamodb";
 import { useAppSelector } from "@/redux/hooks";
 import { Product } from "@/app/utils/typings";
 import { useRouter } from "next/navigation";
@@ -35,19 +34,9 @@ const Form = () => {
 
   const onSubmit = handleSubmit(async (data: FormData) => {
     const { name, phone, pickupDate, pickupTime } = data;
-    const platters = productsInCart.map(
+    const products = productsInCart.map(
       ({ id, image, name, price, quantity }: Product) => {
-        return {
-          M: {
-            id: { S: id + "" },
-            image: {
-              S: image + "",
-            },
-            name: { S: name + "" },
-            price: { N: price + "" },
-            quantity: { N: quantity + "" },
-          },
-        };
+        return { id, image, name, price, quantity };
       }
     );
     const pickupDateUnixSecond = pickupDate.getTime() / 1000;
@@ -56,20 +45,21 @@ const Form = () => {
     const params = {
       TableName: "orders",
       Item: {
-        id: { S: uuidv4() + "" },
-        phone: { S: phone + "" },
-        name: { S: name + "" },
-        pickupDate: { S: pickupDateUnixSecond + "" },
-        pickupTime: { S: pickupTime + "" },
-        platters: {
-          L: platters,
-        },
-        TTL: { N: ttl + "" },
+        id: uuidv4(),
+        phone,
+        name,
+        pickupDate: pickupDateUnixSecond,
+        pickupTime,
+        products,
+        TTL: ttl,
       },
     };
 
+    console.log(params);
+
     try {
-      await dynamoClient.send(new PutItemCommand(params));
+      // await dynamoClient.send(new PutItemCommand(params));
+      await dynamoClient.put(params);
       alert("Successfully added new orders!");
       router.replace("/");
     } catch (err) {

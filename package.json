@@ -12,6 +12,7 @@
     "@aws-sdk/client-cognito-identity": "^3.332.0",
     "@aws-sdk/client-dynamodb": "^3.332.0",
     "@aws-sdk/credential-provider-cognito-identity": "^3.332.0",
+    "@aws-sdk/lib-dynamodb": "^3.335.0",
     "@aws-sdk/util-dynamodb": "^3.332.0",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
