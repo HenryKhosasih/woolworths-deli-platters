@@ -8,7 +8,6 @@ type Props = {
 };
 
 const Orders = ({ orders, mutate }: Props) => {
-  console.log(orders);
   return (
     <div className="mt-5 text-[#fff] space-y-6">
       {orders
