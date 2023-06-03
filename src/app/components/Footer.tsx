@@ -17,12 +17,12 @@ const Footer = () => {
         alt="woolworths-logo"
       />
 
-      <p className="text-white text-xs">
+      <p className="text-white text-xs text-center mx-6 leading-6">
         Made with ❤ by{" "}
         <Link
           href="https://www.linkedin.com/in/henry-khosasih-613902119/"
           target="_blank"
-          className="p-1 rounded-sm bg-gradient-to-r from-blue-700 via-blue-800 to-gray-900"
+          className="p-1 rounded-sm whitespace-nowrap bg-gradient-to-r from-blue-700 via-blue-800 to-gray-900"
         >
           @Henry Khosasih
         </Link>
