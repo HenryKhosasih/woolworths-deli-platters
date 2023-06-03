@@ -32,7 +32,7 @@ const Footer = () => {
         className="bg-[#24292C] text-white text-sm rounded-lg p-4 hover:bg-[#373e43]"
         onClick={scrollToTop}
       >
-        Back to top
+        <span className="hidden sm:inline-block">Back to top</span>
         <StraightIcon />
       </button>
     </div>
