@@ -20,7 +20,7 @@ const Footer = () => {
       <p className="text-white text-xs text-center mx-7 leading-6">
         Made with ❤ by{" "}
         <Link
-          href="https://www.linkedin.com/in/henry-khosasih-613902119/"
+          href="https://henry-khosasih.vercel.app/"
           target="_blank"
           className="p-1 rounded-sm whitespace-nowrap bg-gradient-to-r from-blue-700 via-blue-800 to-gray-900"
         >
